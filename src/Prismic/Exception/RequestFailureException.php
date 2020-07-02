@@ -67,7 +67,7 @@ class RequestFailureException extends RuntimeException
 
     public function getRequest() :? RequestInterface
     {
-        if (! $this->guzzleException instanceof TransferException) {
+        if (! $this->guzzleException instanceof RequestException) {
             return null;
         }
         return $this->guzzleException->getRequest();

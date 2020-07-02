@@ -59,6 +59,9 @@ class RequestFailureException extends RuntimeException
         return $exception;
     }
 
+    /**
+     * @return ResponseInterface|null
+     */
     public function getResponse() :? ResponseInterface
     {
         if (! $this->guzzleException instanceof RequestException) {
@@ -67,9 +70,13 @@ class RequestFailureException extends RuntimeException
         return $this->guzzleException->getResponse();
     }
 
+    /**
+     * @return RequestInterface|null
+     */
     public function getRequest() :? RequestInterface
     {
-        if (! $this->guzzleException instanceof RequestException && ! $this->guzzleException instanceof ConnectException) {
+        if (! $this->guzzleException instanceof RequestException &&
+            ! $this->guzzleException instanceof ConnectException) {
             return null;
         }
         return $this->guzzleException->getRequest();
